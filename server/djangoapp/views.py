@@ -53,6 +53,7 @@ def login_request(request):
 
 # Create a `logout_request` view to handle sign out request
 def logout_request(request):
+    context = {}
     print("Log out the user `{}`".format(request.user.username))
     logout(request)
     return redirect('djangoapp:index')
@@ -82,8 +83,7 @@ def registration_request(request):
         # If it is a new user
         if not user_exist:
             # Create user in auth_user table
-            user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
-                                            password=password)
+            user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, password=password)
             login(request, user)
             return redirect("djangoapp:index")
         else:
