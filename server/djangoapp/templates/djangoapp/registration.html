@@ -19,6 +19,7 @@
             <label for="password"><b>Password</b></label>
             <input class="form-control" type="password" placeholder="Enter Password: " name="password" required>
             </div>
+            {% csrf_token %}
             <button class="btn btn-primary" type="submit">Sign Up</button>
         </div>
     </form>
