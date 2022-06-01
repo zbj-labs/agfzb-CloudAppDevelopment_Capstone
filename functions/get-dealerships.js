@@ -13,10 +13,9 @@ function main(params) {
             authenticator: authenticator
         });
         cloudant.setServiceUrl('Your COUCH_URL');
-        if (params.st) {
-            st = 
+        if (params.state) {
             // return dealership with this state 
-            cloudant.postFind({db:'dealerships',selector:{st:params.st}})
+            cloudant.postFind({db:'dealerships',selector:{st:params.state}})
             .then((result)=>{
               let code = 200;
               if (result.result.docs.length == 0) {
@@ -30,13 +29,13 @@ function main(params) {
             }).catch((err)=>{
               reject(err);
             })
-        } else if (params.id) {
+        } else if (params.dealerId) {
             id = parseInt(params.dealerId)
             // return dealership with this id 
             cloudant.postFind({
               db: 'dealerships',
               selector: {
-                id: parseInt(params.id)
+                id: parseInt(params.dealerId)
               }
             })
             .then((result)=>{
