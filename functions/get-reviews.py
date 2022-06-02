@@ -4,7 +4,6 @@
 # 3. Invoke w/ parameters: {"id": "15"}
 
 # docs:
-# https://blog.cloudant.com/
 # https://ibm.github.io/cloudant-python-sdk/docs/0.0.32/ibmcloudant.html#module-ibmcloudant.cloudant_v1
 # https://cloud.ibm.com/docs/Cloudant?topic=Cloudant-databases&code=python
 
