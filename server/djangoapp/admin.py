@@ -4,17 +4,15 @@ from .models import CarMake, CarModel
 # CarModelInline class
 class CarModelInline(admin.TabularInline):
     model = CarModel
-    extra = 1
 
 # CarModelAdmin class
 class CarModelAdmin(admin.ModelAdmin):
-    inlines = [CarModelInline]
-    list_display = ('name', 'car_make', 'dealer_id', 'type', 'year')
+    list_display = ('name',)
 
 # CarMakeAdmin class with CarModelInline
 class CarMakeAdmin(admin.ModelAdmin):
     inlines = [CarModelInline]
-    list_display = ('name', 'description')
+    list_display = ('name',)
 
 
 # Register models
