@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 # from .models import related models
 # from .restapis import related methods
-from .restapis import get_dealers_from_cf, get_dealer_reviews_from_cf
+from .restapis import get_dealers_from_cf, get_dealer_reviews_from_cf, post_request
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
@@ -113,6 +113,22 @@ def get_dealer_details(request, dealer_id):
         return HttpResponse(reviews)
 
 # Create a `add_review` view to submit a review
-# def add_review(request, dealer_id):
-# ...
-
+def add_review(request, dealer_id):
+    review = {
+        "time": datetime.utcnow().isoformat(),
+        "name": "John Doe",
+        "dealership": dealer_id,
+        "review": "This is a great car dealer. I would recommend them to everyone.",
+        "purchase": True,
+        }
+    json_payload = {"review": review}
+    api_url = "https://d532e59e.eu-de.apigw.appdomain.cloud/api/review"
+    if request.user.is_authenticated:
+        res = post_request(api_url, json_payload, dealerId = dealer_id)
+        print(res)
+        logging.info(res)
+        return redirect('djangoapp:index')
+    else:
+        print("User is not authenticated")
+        logging.info("User is not authenticated")
+        return redirect('djangoapp:index')
