@@ -95,18 +95,16 @@ def get_dealerships(request):
     if request.method == "GET":
         url = "https://d532e59e.eu-de.apigw.appdomain.cloud/api/dealership"
         # Get dealers from the URL
-        dealerships = get_dealers_from_cf(url)
-        # Concat all dealer's short name
-        dealer_names = ' '.join([dealer.short_name for dealer in dealerships])
-        # Return a list of dealer short name
-        return HttpResponse(dealer_names)
+        context = {"dealerships" : get_dealers_from_cf(url)}
+        # Django template to present in a Bootstrap table
+        return render(request, 'djangoapp/index.html', context)
 
 
 # Create a `get_dealer_details` view to render the reviews of a dealer
 def get_dealer_details(request, dealer_id):
     if request.method == "GET":
         url = "https://d532e59e.eu-de.apigw.appdomain.cloud/api/review"
-        # Get revuews from the URL
+        # Get reviews from the URL
         dealer_details = get_dealer_reviews_from_cf(url, dealer_id)
         reviews = ' '.join([f'{detailed.review} (sentiment: {detailed.sentiment})' for detailed in dealer_details])
         # Return a list of dealer short name
