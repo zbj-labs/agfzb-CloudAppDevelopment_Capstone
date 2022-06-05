@@ -80,6 +80,24 @@ def get_dealers_from_cf(url, **kwargs):
 # def get_dealer_by_id_from_cf(url, dealerId):
 # - Call get_request() with specified arguments
 # - Parse JSON results into a DealerView object list
+def get_dealer_by_id_from_cf(url, dealer_id):
+    # Call get_request with a URL parameter
+    json_result = get_request(url, dealerId=dealer_id)
+    if json_result:
+        # Get the row list in JSON as dealers
+        dealer = json_result["body"][0]
+        dealer_obj = CarDealer(
+            address=dealer["address"],
+            city=dealer["city"],
+            full_name=dealer["full_name"],
+            id=dealer["id"],
+            lat=dealer["lat"],
+            long=dealer["long"],
+            short_name=dealer["short_name"],
+            st=dealer["st"],
+            zip=dealer["zip"])
+    return dealer_obj
+
 
 
 def get_dealer_reviews_from_cf(url, dealer_id):
@@ -116,12 +134,12 @@ def get_dealer_reviews_from_cf(url, dealer_id):
 def analyze_review_sentiments(txt):
     result = "NA"
     nlu_url = "https://api.eu-gb.natural-language-understanding.watson.cloud.ibm.com/instances/8d771966-5e4e-446b-a87d-020098e53e3a/v1/analyze"
-    try:
-        json_result = get_request(url=nlu_url, 
+    json_result = get_request(url=nlu_url, 
                         api_key=os.getenv('NLU_API_KEY'),
                         text=txt,
                         version="2022-04-07",
                         features="sentiment")
-        result = json_result["sentiment"]["document"]["label"]
-    finally:
-        return result
+    try:
+        return json_result["sentiment"]["document"]["label"]
+    except KeyError:
+        return 'neutral'
