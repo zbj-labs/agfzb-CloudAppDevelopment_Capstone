@@ -16,7 +16,6 @@ logger = logging.getLogger(__name__)
 
 
 # Create your views here.
-@csrf_protect
 def index(request):
     context = {}
     if request.method == "GET":
@@ -24,7 +23,6 @@ def index(request):
 
 # Create an `about` view to render a static about page
 
-@csrf_protect
 def about(request):
     context = {}
     if request.method == "GET":
@@ -32,7 +30,6 @@ def about(request):
 
 # Create a `contact` view to return a static contact page
 
-@csrf_protect
 def contact(request):
     context = {}
     if request.method == "GET":
@@ -102,7 +99,6 @@ def registration_request(request):
 
 # Update the `get_dealerships` view to render the index page with a list of dealerships
 
-@csrf_protect
 def get_dealerships(
         request,
         url="https://d532e59e.eu-de.apigw.appdomain.cloud/api/"):
@@ -113,7 +109,6 @@ def get_dealerships(
 
 
 # `get_dealer_details` view to render the reviews of a dealer
-@csrf_protect
 def get_dealer_details(
         request,
         dealer_id,
@@ -127,7 +122,6 @@ def get_dealer_details(
 
 # Create a `add_review` view to submit a review
 
-@csrf_protect
 def add_review(
     request,
     dealer_id,
