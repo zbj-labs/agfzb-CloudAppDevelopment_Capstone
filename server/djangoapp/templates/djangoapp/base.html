@@ -29,8 +29,11 @@
         {% if user.is_authenticated %}
         <li>
           <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+          {% block review %}
+          {% endblock %} 
           <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
-        </li>
+          </li>
+
         {% else %}
         <li>
           <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
