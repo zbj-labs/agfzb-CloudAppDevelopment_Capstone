@@ -101,10 +101,9 @@ def registration_request(request):
 
 def get_dealerships(
         request,
-        url="https://d532e59e.eu-de.apigw.appdomain.cloud/api/"):
+        url="https://18262cb0.eu-de.apigw.appdomain.cloud/api/"):
     if request.method == "GET":
         context = {"dealerships": get_dealers_from_cf(url+'dealership')}
-        # Django template to present in a Bootstrap table
         return render(request, 'djangoapp/index.html', context)
 
 
@@ -112,9 +111,8 @@ def get_dealerships(
 def get_dealer_details(
         request,
         dealer_id,
-        url="https://d532e59e.eu-de.apigw.appdomain.cloud/api/"):
+        url="https://18262cb0.eu-de.apigw.appdomain.cloud/api/"):
     if request.method == "GET":
-        # Get reviews from the URL
         context = {
             "dealer": get_dealer_by_id_from_cf(url + 'dealership', dealer_id),
             "reviews": get_dealer_reviews_from_cf(url + 'review', dealer_id)}
@@ -125,7 +123,7 @@ def get_dealer_details(
 def add_review(
     request,
     dealer_id,
-    url = "https://d532e59e.eu-de.apigw.appdomain.cloud/api/"):    
+    url = "https://18262cb0.eu-de.apigw.appdomain.cloud/api/"):    
     if request.method == "GET":
         get_url = url + "dealership"
         dealer = get_dealer_by_id_from_cf(get_url, dealer_id)
