@@ -17,6 +17,7 @@
     <div class="container-fluid">
         <h3>Add a new review for <b>{{dealer.full_name}}</b></h3>
         <form action="/djangoapp/dealer/{{dealer.id}}/add_review" method="post">
+        {% csrf_token %}
             <div class="form-group">
                 <label for="content"><b>Enter the review content:</b></label>
                 <textarea class="form-control" id="content" name="content" rows="2" required></textarea>
@@ -39,7 +40,6 @@
                 <label for="purchasedate"><b>Select your purchase date:</b></label>
                 <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate">
             </div>
-            {% csrf_token %}
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
