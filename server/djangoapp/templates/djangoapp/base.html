@@ -20,15 +20,10 @@
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Dealership Review</a>
+        <a class="navbar-brand" href="{% url 'djangoapp:index' %}">Dealership Bay 🚘</a>
+        <a class="navbar-brand" href="{% url 'djangoapp:about' %}">About</a>
+        <a class="navbar-brand" href="{% url 'djangoapp:contact' %}">Contact Us</a>
       </div>
-
-      <ul class="nav navbar-nav">
-        <li>
-          <a class="btn btn-link" href="{% url 'djangoapp:about' %}">About</a>
-          <a class="btn btn-link" href="{% url 'djangoapp:contact' %}">Contact Us</a>
-        </li>
-      </ul>
 
       <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
@@ -54,6 +49,7 @@
     </div>
   </nav>
 
+  <br/>
   {% block content %}
   {% endblock %}
   
