@@ -28,7 +28,7 @@ DEBUG = True
 APPEND_SLASH = True
 
 ALLOWED_HOSTS = ['joaomartins1-8000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai', 'joaomartins1.eu-gb.cf.appdomain.cloud', 'localhost', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://joaomartins1-8000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/','https://joaomartins1.eu-gb.cf.appdomain.cloud/','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://*.cognitiveclass.ai', 'https://*.appdomain.cloud', 'https://*.127.0.0.1']
 
 # Application definition
 
