@@ -20,8 +20,8 @@ def main(dict):
     if dealer_id == "":
         response = service.post_all_docs(
             db='reviews',
-            include_docs = True,
-            limit = 10
+            include_docs = True
+            # limit = 10
         ).get_result()
     else:
         response = service.post_find(
